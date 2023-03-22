@@ -1,5 +1,5 @@
-import { it, test, expect } from 'vitest'
-import { deepMerge } from '@/index'
+import { vi, test, expect } from 'vitest'
+import { deepMerge, greetings } from '@/index'
 
 test('shallow merge', () => {
   const merged = deepMerge({ name: 'Brice' }, { github: 'btchiaga' })
@@ -63,4 +63,17 @@ test('throws erros on mergingtwo different data types', () => {
   expect(merged).toThrowError('Cannot merge two different data types')
 })
 
+test('greets the user when name provided', () => {
+    
+  expect(greetings('Yarus')).toMatchInlineSnapshot('"Hello Yarus"')
+})
 
+// test spying on functions
+
+test('spying on console log',() => {
+    const spy = vi.spyOn(console,'log')
+    greetings('Danick')
+    expect(spy).toBeCalledWith('Hello Danick')
+    expect(spy).toHaveBeenCalledTimes(1)
+
+})

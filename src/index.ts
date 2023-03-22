@@ -20,3 +20,8 @@ export function deepMerge(x, y){
     }
 return merged 
 }
+
+export function greetings(name:string){
+    console.log(`Hello ${name}`)
+    return `Hello ${name}`
+}

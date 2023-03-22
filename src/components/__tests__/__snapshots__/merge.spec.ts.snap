@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`deep merge with overlaps 1`] = `
+{
+  "accounts": {
+    "github": "unknown",
+    "instagram": "ZAB",
+  },
+  "languages": [
+    "french",
+    "python",
+    "typescript",
+    "german",
+    "java",
+  ],
+  "name": "Brice",
+  "twitter": "YAT",
+}
+`;

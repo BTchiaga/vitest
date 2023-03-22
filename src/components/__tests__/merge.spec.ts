@@ -23,12 +23,35 @@ test('shallow merge with arrays', () => {
 
 test('deep merge with overlaps', () => {
   const merged = deepMerge(
-    { name: 'Brice', accounts: { github: 'unknown' } },
-    { twitter: 'YAT', accounts: { instagram: 'ZAB' } }
+    { name: 'Brice', accounts: { github: 'unknown' },languages:['french','python','typescript'] },
+    { twitter: 'YAT', accounts: { instagram: 'ZAB' },languages:['german','java'] }
   )
 
-  expect(merged).toEqual({ name: 'Brice',twitter: 'YAT', accounts: { github: 'unknown', instagram: 'ZAB' }})
+  expect(merged).toMatchSnapshot()
+  //in dev mode to see the resultsuse inline smapshot 
+  //you can use inline snapshot as a console log in test
+  expect(merged).toMatchInlineSnapshot(`
+    {
+      "accounts": {
+        "github": "unknown",
+        "instagram": "ZAB",
+      },
+      "languages": [
+        "french",
+        "python",
+        "typescript",
+        "german",
+        "java",
+      ],
+      "name": "Brice",
+      "twitter": "YAT",
+    }
+  `)
 })
+
+//snapshot allows us to reuse the results from the previous test and ensure it does not get changed later  
+
+// snapshots saves us time from wrtiing the expected results manually
 
 test('throws erros on mergingtwo different data types', () => {
     //to capture the thrown error make the expect input as a function
@@ -39,3 +62,5 @@ test('throws erros on mergingtwo different data types', () => {
 
   expect(merged).toThrowError('Cannot merge two different data types')
 })
+
+
